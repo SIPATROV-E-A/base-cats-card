@@ -16,8 +16,33 @@
          <button class="btn" id="add"><i class="fa-regular fa-plus"></i></button>
         </div>
     </header>
-    <main class="main container"></main>
-    <footer class="footer"></footer>
+    <main class="main container">
+        <section class="cards">
+          <h2 class="visually-hidden">Список котеек</h2>
+          
+      </section>
+
+    </main>
+    <footer class="footer">
+        <div class="container footer__container">
+            <span class="copyright">©2022 Made by Evgeny</span>
+            <div class="socials">
+                <a class="socials__link" href="#"><i class="fa-brands fa-telegram"></i></a>
+                <a class="socials__link" href="#"><i class="fa-brands fa-vk"></i></a>
+                <a class="socials__link" href="#"><i class="fa-brands fa-github"></i></a>
+                <a class="socials__link" href="#"><i class="fa-brands fa-discord"></i></a>
+        </div>
+    </footer>
+    <template>
+        <div class="card">
+          <img src="https://stihi.ru/pics/2017/03/29/10192.jpg" alt="Изображение" class="card__image">
+          <a href="#" class="card__link"><h3 class="card__name"></h3>котофеич</a>
+          <button class="card__like" aria-label="лайкануть"><i class="fa-solid fa-heart"></i></button>
+        </div>
+    </template>
+    <script src="./script/cats.js" defer></script>
+    <script src="./script/api.js" defer></script>
+    <script src="./script/card.js" defer></script>
     <script src="./script/index.js" defer></script>
     
 </body>
