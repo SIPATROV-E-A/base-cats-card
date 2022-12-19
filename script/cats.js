@@ -1,4 +1,4 @@
-const catsHeroes = [
+catsHeroes = [
 {
     id: 12155070,
      name: "Бегемот", 
@@ -23,7 +23,7 @@ const catsHeroes = [
 {
     id: 7858758411,
      name: "Муфаса", 
-     img_link: "https://avatars.mds.yandex.net/get-zen_doc/61795/pub_5e15dd79dddaf400b1f6c8ae_5e15dd92dddaf400b1f6c8af/scale_1200",
+     img_link: "https://i.pinimg.com/236x/73/c0/6e/73c06ee88e3c5301408cfc895044ee47.jpg",
      age: 10, 
      rate: 3, 
      description: "настоящий король, но очень доверчив",
@@ -52,4 +52,4 @@ const catsHeroes = [
 
 
 
-]
+];
