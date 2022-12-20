@@ -11,23 +11,27 @@ constructor(config){
     this._headers = config.headers
 }
 
-postAddCats(body) {
+_onResponce(res){
+    return res.ok ? res.json() : Promise.reject({...res, message: "Ошибка на стороне сервера"});
+}
+postAddCats(data) {
 
-    fetch(`${this._url}/add`, {
+   return fetch(`${this._url}/add`, {
         method: "POST",
-        body: JSON.stringify(body),
+        body: JSON.stringify(data),
         headers: this._headers
-    })
+    }).then(this._onResponce)
 
     
 };
 
 getAddCats(){
 
-    fetch(`${this._url}/show`, {
+  return  fetch(`${this._url}/show`, {
         method: "GET"
        
-    })
+    }).then(this._onResponce)
+    
 
 };
 
@@ -37,7 +41,7 @@ updateCat(body, idCat) {
         method: "PUT",
         body: JSON.stringify(body),
         headers: this._headers
-    })
+    }).then(this._onResponce)
 
 };
 
@@ -46,7 +50,7 @@ deleteCat(idCat) {
     fetch(`${this._url}/delete/${idCat}`, {
         method: "DELETE"
    
-    })
+    }).then(this._onResponce)
 
 };
 
@@ -55,7 +59,7 @@ getOneCats(idCat){
     fetch(`${this._url}/show/${idCat}`, {
         method: "GET"
        
-    })
+    }).then(this._onResponce)
 
 };
 getAllMiCats(){
@@ -63,7 +67,7 @@ getAllMiCats(){
     fetch(`${this._url}/ids`, {
         method: "GET"
        
-    })
+    }).then(this._onResponce)
 
 };
 
@@ -71,4 +75,5 @@ getAllMiCats(){
 
 
 
-const catsHeroesMult = new Api(CONFIG_API);
+const api = new Api(CONFIG_API);
+api.getAddCats()
