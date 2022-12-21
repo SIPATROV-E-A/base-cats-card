@@ -1,5 +1,5 @@
 const CONFIG_API = {
-    url : "https://cats.petiteweb.dev/api/single/mufasacatjs",
+    url : "https://cats.petiteweb.dev/api/single/mufasacat",
     headers : { 
 "Content-type": "application/json"
     } 
@@ -35,11 +35,11 @@ getAddCats(){
 
 };
 
-updateCat(body, idCat) {
+updateCat(idCat, data) {
 
     fetch(`${this._url}/update/ ${idCat}`, {
         method: "PUT",
-        body: JSON.stringify(body),
+        body: JSON.stringify(data),
         headers: this._headers
     }).then(this._onResponce)
 
@@ -76,4 +76,3 @@ getAllMiCats(){
 
 
 const api = new Api(CONFIG_API);
-api.getAddCats()
