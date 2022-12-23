@@ -1,13 +1,25 @@
 const containerForCats = document.querySelector(".cards");
 const butAddCat = document.querySelector("#add");
-const formAddCat = document.querySelector("#popup-form-cat")
+const butInput = document.querySelector("#login");
+const formAddCat = document.querySelector("#popup-form-cat");
+const formLogin = document.querySelector('#popup-form-login');
+
+
 const addCatsForm = new Popup('popup-add-cats');
 addCatsForm.setEventListener();
+
+const popupLogin = new Popup("popup-login");
+popupLogin.setEventListener();
+
 butAddCat.addEventListener("click", ()=>{
     addCatsForm.open();   
 });
 
 formAddCat.addEventListener("submit",handForFormAddCat);
+butInput.addEventListener("click", ()=>{popupLogin.open();}
+  
+);
+
 function serialiseForm(elements){
     const dataForms={};
     elements.forEach((input)=>{

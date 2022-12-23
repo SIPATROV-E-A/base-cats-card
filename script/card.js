@@ -17,9 +17,10 @@ console.log(imgCat);
 const cardLike = this.element.querySelector('.card__like');
 titleCat.textContent = this._data.name;
 imgCat.src = this._data.image;
-
+  
 if(!this._data.favorite) {
     cardLike.classList.toggle('like-no-active')
+  
 
  };
  return this.element
