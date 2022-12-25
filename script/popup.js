@@ -10,7 +10,7 @@ class Popup {
       this.popup.classList.remove('popup_active');
     }
     setEventListener() {
-      console.log(this.popup);
+     
       this.popup.addEventListener('click', (event) => {
         console.log(event.target.closest('.popup__close'));
         if (

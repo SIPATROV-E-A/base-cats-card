@@ -16,6 +16,7 @@ butAddCat.addEventListener("click", ()=>{
 });
 
 formAddCat.addEventListener("submit",handForFormAddCat);
+formLogin.addEventListener("submit",handForFormLogin)
 butInput.addEventListener("click", ()=>{popupLogin.open();}
   
 );
@@ -35,8 +36,8 @@ function serialiseForm(elements){
     return dataForms;
 }
 
-function createCat(dataCat) {
-    const cardInstance = new Card(dataCat, '#card-template');
+function createCat(dataCats) {
+    const cardInstance = new Card(dataCats, '#card-template');
     const newCardElement = cardInstance.getElement();
     containerForCats.append(newCardElement);
   } 
@@ -46,9 +47,7 @@ e.preventDefault();
 const elementForFormCat = [...formAddCat.elements];
 
 const dataFromForm = serialiseForm(elementForFormCat);
-// const catCard = new Card(dataFromForm,"#card-template");
-// const oneCatCard = catCard.getElement();
-// containerForCats.append(oneCatCard);
+
 api.postAddCats(dataFromForm).then(()=>{
     createCat(dataFromForm) 
 })
@@ -58,9 +57,46 @@ addCatsForm.close();
 
 }
 
-api.getAddCats().then((data)=>{
-    data.forEach((dataCats)=>{
-        createCat(dataCats)
+function handForFormLogin(e){
+    e.preventDefault();
+    const elementForFormCat = [...formLogin.elements];
+const dataFromForm = serialiseForm(elementForFormCat);
+Cookies.set("email", `email=${dataFromForm.email}`);
+popupLogin.close();
+butInput.classList.add("visually-hidden");
+
+}
+const isAuth = Cookies.get("email");
+if(!isAuth){
+    popupLogin.open();
+    butInput.classList.remove("visually-hidden");
+}
+
+
+
+function checkLocalStorage(){
+    const localData =JSON.parse(localStorage.getItem(catsHeroesMult));
+    const getTimeExpires = localStorage.getItem("catRefresh");
+    const timeActual = new Date()< new Date(getTimeExpires);
+
+    if(localData && localData.length && timeActual){
+         localData.forEach(function(dataCats){
+         createCat(dataCats)});
+        
+    } else {
+        api.getAddCats().then((data)=>{
+         data.forEach((dataCats)=>{
+         createCat(dataCats)
+          });
+         localStorage.setItem('cats', JSON.stringify(data));
+         setDataRefresh(85, "catRefresh");
         });
 
-})
+    }
+}
+function setDataRefresh(min){
+    const time = new Date(new Date().getTime+min*600);
+    localStorage.setItem('key', 'time');
+    return time
+ }
+checkLocalStorage()
