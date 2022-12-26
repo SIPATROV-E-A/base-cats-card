@@ -73,8 +73,9 @@ if(!isAuth){
 };
 
 function checkLocalStorage(){
-    const localData =JSON.parse(localStorage.getItem(catsHeroesMult));
-    const getTimeExpires = localStorage.getItem("catRefresh");
+  
+    const localData =JSON.parse(localStorage.getItem('cats'));
+    const getTimeExpires = localStorage.getItem("catsRefresh");
     const timeActual = new Date()< new Date(getTimeExpires);
 
     if(localData && localData.length && timeActual){
@@ -82,6 +83,7 @@ function checkLocalStorage(){
          createCat(dataCats)});
         
     } else {
+        
         api.getAddCats().then((data)=>{
          data.forEach((dataCats)=>{
          createCat(dataCats)
@@ -91,9 +93,9 @@ function checkLocalStorage(){
 
     }
 };
-function setDataRefresh(min){
-    const time = new Date(new Date().getTime+min*600);
-    localStorage.setItem('key', 'time');
+function setDataRefresh(minutes, key){
+    const time = new Date(new Date().getTime+minutes*600);
+    localStorage.setItem(key, time);
     return time
 };
 checkLocalStorage();
@@ -123,3 +125,4 @@ function updateLocalStorage(data, action) {
         break;
     }
 };
+
