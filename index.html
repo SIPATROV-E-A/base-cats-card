@@ -13,7 +13,7 @@
 <body class="page">
     <header class="header">
         <div class="container header_container">
-         <a href="#" class="logo"><i class="fa-sharp fa-solid fa-paw"></i>Мои коты</a> 
+         <a href="" class="logo"><i class="fa-sharp fa-solid fa-paw"></i>Мои коты</a> 
          <button class="btn" id="add"><i class="fa-regular fa-plus"></i></button>
          <button class="btn " id="login">Войти</button>
         </div>
@@ -69,18 +69,37 @@
             </form>
         </div>
     </div>
-    <template id="card-template">
-        <div class="card">
-          <img src="https://r2.mt.ru/r20/photoD112/20936310810-0/jpg/bp.jpeg" alt="Изображение" class="card__image">
-          <a href="#" class="card__link"><h3 class="card__name">котофеич</h3></a>
-          <button class="card__like" aria-label="лайкануть"><i class="fa-solid fa-heart"></i></button>
+
+    <div class="popup popup-info-detail">
+        <div class="popup__container" >
+            
+            <h2>Подробности</h2>
+
+            <form class="form" id="popup-form-info">
+                <div>
+                    <label class="forminfoId" id="idcat">id</label>
+                    <label class="forminfoName" id="namecat">Имя</label>
+                    
+                </div>
+                
+            </form>
         </div>
-    </template>
+    </div>
+
+    <template id="card-template">
+       
+        <div class="card" >
+          <img src="https://r2.mt.ru/r20/photoD112/20936310810-0/jpg/bp.jpeg" alt="Изображение" class="card__image" >
+          <a href="" class="card__link" ><h3 class="card__name" >котофеич</h3></a>
+          <button  class="card__like"  aria-label="лайкануть"><i class="fa-solid fa-heart"></i></button>
+        </div>  
+    </template>   
     <script src="./script/cats.js" defer></script>
     <script src="./script/api.js" defer></script>
     <script src="./script/card.js" defer></script>
     <script src="./script/popup.js" defer></script>
     <script src="./script/index.js" defer></script>
+    <script src="./script/infodetailcat.js" defer></script>
     
 </body>
 </html>

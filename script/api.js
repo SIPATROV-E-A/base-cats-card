@@ -13,16 +13,15 @@ constructor(config){
 
 _onResponce(res){
     return res.ok ? res.json() : Promise.reject({...res, message: "Ошибка на стороне сервера"});
-}
+};
+
 postAddCats(data) {
 
    return fetch(`${this._url}/add`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: this._headers
-    }).then(this._onResponce)
-
-    
+    }).then(this._onResponce)    
 };
 
 getAddCats(){
@@ -31,8 +30,6 @@ getAddCats(){
         method: "GET"
        
     }).then(this._onResponce)
-    
-
 };
 
 updateCat(idCat, data) {
@@ -42,7 +39,6 @@ updateCat(idCat, data) {
         body: JSON.stringify(data),
         headers: this._headers
     }).then(this._onResponce)
-
 };
 
 deleteCat(idCat) {
@@ -51,7 +47,6 @@ deleteCat(idCat) {
         method: "DELETE"
    
     }).then(this._onResponce)
-
 };
 
 getOneCats(idCat){
@@ -60,8 +55,8 @@ getOneCats(idCat){
         method: "GET"
        
     }).then(this._onResponce)
-
 };
+
 getAllMiCats(){
 
     fetch(`${this._url}/ids`, {
@@ -71,8 +66,6 @@ getAllMiCats(){
 
 };
 
-}
-
-
+};
 
 const api = new Api(CONFIG_API);

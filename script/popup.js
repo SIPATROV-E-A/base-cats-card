@@ -12,7 +12,7 @@ class Popup {
     setEventListener() {
      
       this.popup.addEventListener('click', (event) => {
-        console.log(event.target.closest('.popup__close'));
+        
         if (
           event.target.classList.contains(this._className) ||
           !!event.target.closest('.popup__close')
@@ -23,5 +23,5 @@ class Popup {
     }
   }
   
-  const popupsCat = new Popup('popup-add-cats');
+ 
 

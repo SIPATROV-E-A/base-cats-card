@@ -4,7 +4,6 @@ const butInput = document.querySelector("#login");
 const formAddCat = document.querySelector("#popup-form-cat");
 const formLogin = document.querySelector('#popup-form-login');
 
-
 const addCatsForm = new Popup('popup-add-cats');
 addCatsForm.setEventListener();
 
@@ -17,9 +16,8 @@ butAddCat.addEventListener("click", ()=>{
 
 formAddCat.addEventListener("submit",handForFormAddCat);
 formLogin.addEventListener("submit",handForFormLogin);
-butInput.addEventListener("click", ()=>{popupLogin.open();}
-  
-);
+butInput.addEventListener("click", ()=>{popupLogin.open();
+});
 
 function serialiseForm(elements){
     const dataForms={};
@@ -27,10 +25,10 @@ function serialiseForm(elements){
         if(input.type==="submit") return;
         if(input.type !== "checkbox"){
             dataForms[input.name]=input.value
-        }
+         };
         if(input.type==="checkbox"){
             dataForms[input.name]=input.checked;
-        }
+        };
         
     });
     return dataForms;
@@ -43,39 +41,32 @@ function createCat(dataCats) {
 };
 
 function handForFormAddCat(e){
-e.preventDefault();
-const elementForFormCat = [...formAddCat.elements];
-
-const dataFromForm = serialiseForm(elementForFormCat);
-
-api.postAddCats(dataFromForm).then(()=>{
+ e.preventDefault();
+ const elementForFormCat = [...formAddCat.elements];
+ const dataFromForm = serialiseForm(elementForFormCat);
+ api.postAddCats(dataFromForm).then(()=>{
     createCat(dataFromForm);
     updateLocalStorage(dataFromForm, {type : "ADD_CAT"});
-});
-
-addCatsForm.close();
-
-
+ });
+ addCatsForm.close();
 };
 
 function handForFormLogin(e){
-    e.preventDefault();
-    const elementForFormCat = [...formLogin.elements];
-const dataFromForm = serialiseForm(elementForFormCat);
-Cookies.set("email", `email=${dataFromForm.email}`);
-butInput.classList.add("visually-hidden");
-popupLogin.close();
+ e.preventDefault();
+ const elementForFormCat = [...formLogin.elements];
+ const dataFromForm = serialiseForm(elementForFormCat);
+ Cookies.set("email", `email=${dataFromForm.email}`);
+ butInput.classList.add("visually-hidden");
+ popupLogin.close();
 };
-const isAuth = Cookies.get("email");
-if(!isAuth){
-    popupLogin.open();
-    butInput.classList.remove("visually-hidden");
-};
+
+
 
 function checkLocalStorage(){
   
     const localData =JSON.parse(localStorage.getItem('cats'));
     const getTimeExpires = localStorage.getItem("catsRefresh");
+    
     const timeActual = new Date()< new Date(getTimeExpires);
 
     if(localData && localData.length && timeActual){
@@ -91,12 +82,20 @@ function checkLocalStorage(){
           updateLocalStorage(data, { type: 'ALL_CATS' });
         });
 
-    }
+    };
 };
+
 function setDataRefresh(minutes, key){
-    const time = new Date(new Date().getTime+minutes*600);
-    localStorage.setItem(key, time);
-    return time
+ const time = new Date(new Date().getTime()+minutes*60000);
+ localStorage.setItem(key, time);
+ return time
+};
+
+const isAuth = Cookies.get("email");
+
+if(!isAuth){
+ popupLogin.open();
+ butInput.classList.remove("visually-hidden");
 };
 checkLocalStorage();
 
@@ -118,11 +117,11 @@ function updateLocalStorage(data, action) {
       case 'EDIT_CAT':
         const updatedLocalStorage = oldStorage.map((cat) =>
           cat.id === data.id ? data : cat
-        );
-        localStorage.setItem('cats', JSON.stringify(updatedLocalStorage));
-        return;
-      default:
-        break;
-    }
+         );
+         localStorage.setItem('cats', JSON.stringify(updatedLocalStorage));
+         return;
+         default:
+         break;
+    };
 };
 
